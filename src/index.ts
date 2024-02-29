@@ -112,6 +112,60 @@ const adapter = new stateMachineAdapter([
     {event: 'SERVICE_DATE_UPDATED', from_state: 'DELETING', expected_transition_state: 'DELETING'},
 ]);
 
+const outputsAdapter = new stateMachineAdapter([
+    {event: 'INITIALIZE', from_state: 'INIT', expected_transition_state: 'INITIALIZING'},
+    {event: 'SERVICE_DATE_UPDATED', from_state: 'INITIALIZING', expected_transition_state: 'INITIALIZING'},
+    {event: 'INITIALIZE_RESOLVED', from_state: 'INITIALIZING', expected_transition_state: 'IDLE'},
+    {event: 'DEVICES_DATA_UPDATED', from_state: 'INITIALIZING', expected_transition_state: 'INITIALIZING'},
+    {event: 'NETWORKS_DATA_UPDATED', from_state: 'INITIALIZING', expected_transition_state: 'INITIALIZING'},
+    {event: 'DEVICES_DATA_UPDATED', from_state: 'IDLE', expected_transition_state: 'IDLE'},
+    {event: 'NETWORKS_DATA_UPDATED', from_state: 'IDLE', expected_transition_state: 'IDLE'},
+    {event: 'FILTER_UPDATED', from_state: 'IDLE', expected_transition_state: 'IDLE'},
+    {event: 'SELECTION_UPDATED', from_state: 'IDLE', expected_transition_state: 'IDLE'},
+    {event: 'WINDOW_SETTINGS_UPDATED', from_state: 'IDLE', expected_transition_state: 'IDLE'},
+    {event: 'OPEN_DRAWER_REQUEST', from_state: 'IDLE', expected_transition_state: 'IDLE'},
+    {event: 'CLOSE_DRAWER_REQUEST', from_state: 'IDLE', expected_transition_state: 'IDLE'},
+    {event: 'FETCH_ALL_REQUEST', from_state: 'IDLE', expected_transition_state: 'IDLE'},
+    {event: 'SERVICE_DATE_UPDATED', from_state: 'IDLE', expected_transition_state: 'IDLE'},
+    {event: 'EDIT_ITEM_REQUEST', from_state: 'IDLE', expected_transition_state: 'EDIT_PREP'},
+    {event: 'FETCH_ITEM_REQUEST', from_state: 'EDIT_PREP', expected_transition_state: 'EDIT_PREP'},
+    {event: 'FETCH_ITEM_RESOLVED', from_state: 'EDIT_PREP', expected_transition_state: 'EDIT_PREP'},
+    {event: 'OPEN_DRAWER_REQUEST', from_state: 'EDIT_PREP', expected_transition_state: 'EDIT_PREP'},
+    {event: 'DEVICES_DATA_UPDATED', from_state: 'EDITING', expected_transition_state: 'EDITING'},
+    {event: 'NETWORKS_DATA_UPDATED', from_state: 'EDITING', expected_transition_state: 'EDITING'},
+    {event: 'FILTER_UPDATED', from_state: 'EDITING', expected_transition_state: 'EDITING'},
+    {event: 'PREV_ITEM_REQUEST', from_state: 'EDITING', expected_transition_state: 'EDITING'},
+    {event: 'FETCH_ITEM_REQUEST', from_state: 'EDITING', expected_transition_state: 'EDITING'},
+    {event: 'FETCH_ITEM_RESOLVED', from_state: 'EDITING', expected_transition_state: 'EDITING'},
+    {event: 'NEXT_ITEM_REQUEST', from_state: 'EDITING', expected_transition_state: 'EDITING'},
+    {event: 'CLOSE_DRAWER_REQUEST', from_state: 'EDITING', expected_transition_state: 'EDITING'},
+    {event: 'FETCH_ALL_REQUEST', from_state: 'EDITING', expected_transition_state: 'EDITING'},
+    {event: 'SERVICE_DATE_UPDATED', from_state: 'EDITING', expected_transition_state: 'EDITING'},
+    {event: 'ITEM_UPDATED', from_state: 'EDITING', expected_transition_state: 'EDITING'},
+    {event: 'ADD_ITEM_REQUEST', from_state: 'IDLE', expected_transition_state: 'ADD_PREP'},
+    {event: 'COPY_ITEM_REQUEST', from_state: 'IDLE', expected_transition_state: 'ADD_PREP'},
+    {event: 'FETCH_ITEM_REQUEST', from_state: 'ADD_PREP', expected_transition_state: 'ADD_PREP'},
+    {event: 'FETCH_ITEM_RESOLVED', from_state: 'ADD_PREP', expected_transition_state: 'ADD_PREP'},
+    {event: 'OPEN_DRAWER_REQUEST', from_state: 'ADD_PREP', expected_transition_state: 'ADD_PREP'},
+    {event: 'DEVICES_DATA_UPDATED', from_state: 'ADDING', expected_transition_state: 'ADDING'},
+    {event: 'NETWORKS_DATA_UPDATED', from_state: 'ADDING', expected_transition_state: 'ADDING'},
+    {event: 'FILTER_UPDATED', from_state: 'ADDING', expected_transition_state: 'ADDING'},
+    {event: 'PREV_ITEM_REQUEST', from_state: 'ADDING', expected_transition_state: 'ADDING'},
+    {event: 'NEXT_ITEM_REQUEST', from_state: 'ADDING', expected_transition_state: 'ADDING'},
+    {event: 'CLOSE_DRAWER_REQUEST', from_state: 'ADDING', expected_transition_state: 'ADDING'},
+    {event: 'FETCH_ALL_REQUEST', from_state: 'ADDING', expected_transition_state: 'ADDING'},
+    {event: 'SERVICE_DATE_UPDATED', from_state: 'ADDING', expected_transition_state: 'ADDING'},
+    {event: 'ITEM_CREATED', from_state: 'ADDING', expected_transition_state: 'ADDING'},
+    {event: 'DELETE_ITEM_REQUEST', from_state: 'IDLE', expected_transition_state: 'DELETING'},
+    {event: 'ITEM_DELETED', from_state: 'DELETING', expected_transition_state: 'DELETING'},
+    {event: 'SERVICE_DATE_UPDATED', from_state: 'DELETING', expected_transition_state: 'DELETING'},
+    {event: 'DELETE_RESOLVED', from_state: 'DELETING', expected_transition_state: 'IDLE'},
+    {event: 'START_ENCODER_REQUEST', from_state: 'IDLE', expected_transition_state: 'STARTING'},
+    {event: 'START_ENCODER_RESOLVED', from_state: 'STARTING', expected_transition_state: 'IDLE'},
+    {event: 'STOP_ENCODER_REQUEST', from_state: 'IDLE', expected_transition_state: 'STOPPING'},
+    {event: 'STOP_ENCODER_RESOLVED', from_state: 'STOPPING', expected_transition_state: 'IDLE'},
+]);
+
 const graphviz = new GraphViz(adapter, {
     name: 'OperatorInterface',
     directed: true,
@@ -121,3 +175,13 @@ const graphviz = new GraphViz(adapter, {
 });
 
 graphviz.createGraph();
+
+const graphviz2 = new GraphViz(outputsAdapter, {
+    name: 'Outputs',
+    directed: true,
+    fontname: 'Helvetica',
+    eventShape: 'Mrecord',
+    stateShape: 'ellipse',
+});
+
+graphviz2.createGraph();
