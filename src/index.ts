@@ -17,8 +17,8 @@ export class GraphViz<T> {
         name: '',
         directed: false,
         fontname: 'SF Pro Text',
-        eventShape: 'ellipse',
-        stateShape: 'Mrecord',
+        eventShape: 'Mrecord',
+        stateShape: 'ellipse',
     };
 
     constructor(
@@ -116,8 +116,8 @@ const graphviz = new GraphViz(adapter, {
     name: 'OperatorInterface',
     directed: true,
     fontname: 'Helvetica',
-    eventShape: 'ellipse',
-    stateShape: 'Mrecord',
+    eventShape: 'Mrecord',
+    stateShape: 'ellipse',
 });
 
 graphviz.createGraph();
