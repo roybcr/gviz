@@ -2,7 +2,7 @@ import {BaseAdapter} from '../../base.adapter';
 import {VizableEntry} from '../../index.types';
 import {IStateMachineEntry} from './state.machine.types';
 
-export class stateMachineAdapter extends BaseAdapter<IStateMachineEntry> {
+export class StateMachineAdapter extends BaseAdapter<IStateMachineEntry> {
     constructor(sources: IStateMachineEntry[]) {
         super(sources);
     }

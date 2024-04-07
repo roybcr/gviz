@@ -1,4 +1,4 @@
-digraph OperatorInterface {
+digraph LayoutConfigPanel {
    fontname="Helvetica"
    beautify=true
    node [fontname="Helvetica"]

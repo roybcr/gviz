@@ -1,1 +1,1 @@
-export {stateMachineAdapter} from './state.machine.adapter';
+export {StateMachineAdapter} from './state.machine.adapter';

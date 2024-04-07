@@ -1,4 +1,4 @@
-digraph Outputs {
+digraph OutputsConfig {
    fontname="Helvetica"
    beautify=true
    node [fontname="Helvetica"]

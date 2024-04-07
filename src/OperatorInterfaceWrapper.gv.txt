@@ -1,0 +1,67 @@
+digraph OperatorInterfaceWrapper {
+   fontname="Helvetica"
+   beautify=true
+   node [fontname="Helvetica"]
+   edge [fontname="Helvetica"]
+   graph [rankdir=LR]
+   splines="ortho"
+   {
+     node [
+       shape=Mrecord
+       colorscheme=spectral11
+       style="filled"
+       width=0
+       height=0.1
+     ]
+     INIT [fillcolor=2 fontcolor=white]
+     INITIALIZING [fillcolor=2 fontcolor=white]
+     IDLE [fillcolor=2 fontcolor=white]
+   }
+   {
+     node [
+       shape=Mrecord
+       width=0
+       height=0.1
+     ]
+     INITIALIZE
+     INITIALIZE_RESOLVED
+     SAVE_REQUEST
+     ITEM_UPDATED
+     FETCH_ALL_REQUEST
+     FETCH_ITEM_REQUEST
+     SELECTION_UPDATED
+     SERVICE_DATE_UPDATED
+     OPEN_DRAWER_REQUEST
+     SAVE_RESOLVED_ERROR
+     FETCH_ITEM_RESOLVED
+     CLOSE_DRAWER_REQUEST
+     SAVE_RESOLVED_SUCCESS
+     WINDOW_SETTINGS_UPDATED
+   }
+   INIT -> INITIALIZE;
+   INITIALIZE -> INITIALIZING;
+   INITIALIZING -> INITIALIZE_RESOLVED;
+   INITIALIZE_RESOLVED -> IDLE;
+   IDLE -> SAVE_REQUEST;
+   SAVE_REQUEST -> IDLE;
+   IDLE -> ITEM_UPDATED;
+   ITEM_UPDATED -> IDLE;
+   IDLE -> FETCH_ALL_REQUEST;
+   FETCH_ALL_REQUEST -> IDLE;
+   IDLE -> FETCH_ITEM_REQUEST;
+   FETCH_ITEM_REQUEST -> IDLE;
+   IDLE -> SELECTION_UPDATED;
+   SELECTION_UPDATED -> IDLE;
+   IDLE -> SERVICE_DATE_UPDATED;
+   SERVICE_DATE_UPDATED -> IDLE;
+   IDLE -> OPEN_DRAWER_REQUEST;
+   OPEN_DRAWER_REQUEST -> IDLE;
+   IDLE -> SAVE_RESOLVED_ERROR;
+   SAVE_RESOLVED_ERROR -> IDLE;
+   IDLE -> FETCH_ITEM_RESOLVED;
+   FETCH_ITEM_RESOLVED -> IDLE;
+   IDLE -> CLOSE_DRAWER_REQUEST;
+   CLOSE_DRAWER_REQUEST -> IDLE;
+   IDLE -> SAVE_RESOLVED_SUCCESS;
+   SAVE_RESOLVED_SUCCESS -> IDLE;
+}
